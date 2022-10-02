@@ -1,0 +1,18 @@
+.bg-login {
+    min-height: 100vh;
+    background-image: url('https://i.pinimg.com/564x/f7/5e/2b/f75e2be6e4fd3668af626ae4f416259f.jpg');
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+link {
+    text-decoration: none;
+}
