@@ -10,16 +10,12 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
-import "./NavBar.css"
-
-
+import "./NavBar.css";
 
 function NavBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-
-  
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -30,73 +26,81 @@ function NavBar() {
   };
 
   return (
-    <div id="nav">
-      <AppBar position="static" >
+    <div id="nav" color="secondary">
+      <AppBar position="static" style={{ backgroundColor: "black" }}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className='menuButton'
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          
-          <Box mx={1} style={{cursor: 'pointer'}}>
-            <Link to='/home' style={{textDecoration: 'none', color: 'white'}}>
-            <Typography variant="h6" className='home'>
-              Home
-            </Typography>
-            </Link>
-          </Box>
-          <Box mx={1} style={{cursor: 'pointer'}}>
-            <Typography variant="h6" className='postagens' >
-              Postagens
-            </Typography>
-          </Box>
-          <Box mx={1} style={{cursor: 'pointer'}}>
-            <Typography variant="h6" className='temas'>
-              Temas
-            </Typography>
-          </Box>
+          <div id="left">
+            <IconButton
+              edge="start"
+              className="menuButton"
+              color="inherit"
+              aria-label="menu"
+            >
+              <MenuIcon />
+            </IconButton>
 
-          <div className="aaaa" style={{display:'flex', justifyContent: 'flex-end'}}>
-          {auth && (
-            <div className="perfil">
-              <Box className="aa">
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
+            <Box mx={1} style={{ cursor: "pointer" }}>
+              <Link
+                to="/home"
+                style={{ textDecoration: "none", color: "white" }}
               >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <Link to='/login' style={{textDecoration: 'none', color: 'black'}}>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
-                </Link>
-              </Menu>
-              </Box>
-            </div>
-          )}
+                <Typography variant="h6" className="home">
+                  Home
+                </Typography>
+              </Link>
+            </Box>
+            <Box mx={1} style={{ cursor: "pointer" }}>
+              <Typography variant="h6" className="postagem">
+                Postagens
+              </Typography>
+            </Box>
+            <Box mx={1} style={{ cursor: "pointer" }}>
+              <Typography variant="h6" className="temas">
+                Temas
+              </Typography>
+            </Box>
+          </div>
+
+          <div id="right">
+            {auth && (
+              <div className="perfil">
+                <Box>
+                  <IconButton
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleMenu}
+                    color="inherit"
+                  >
+                    <AccountCircle />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={open}
+                    onClose={handleClose}
+                  >
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <Link
+                      to="/login"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    </Link>
+                  </Menu>
+                </Box>
+              </div>
+            )}
           </div>
         </Toolbar>
       </AppBar>
@@ -104,4 +108,4 @@ function NavBar() {
   );
 }
 
-export default NavBar
+export default NavBar;
