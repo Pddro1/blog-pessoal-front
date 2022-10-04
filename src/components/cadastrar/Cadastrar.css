@@ -5,3 +5,13 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.btnCancelar {
+    margin-right: 20px !important;
+}
+
+.botao {
+    display: flex;
+    align-items: center;
+    
+}

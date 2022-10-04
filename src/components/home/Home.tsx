@@ -2,8 +2,12 @@ import React from "react";
 import { Typography, Grid, Button } from "@material-ui/core";
 import { Box } from "@mui/material";
 import "./Home.css";
+import { useState } from 'react';
 
 function Home() {
+
+  
+
   return (
     <>
       <Grid
@@ -49,6 +53,7 @@ function Home() {
               Ver Postagens
             </Button>
           </Box>
+
         </Grid>
         <Grid item xs={6}>
           <img
