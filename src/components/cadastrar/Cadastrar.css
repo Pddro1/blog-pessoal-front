@@ -15,3 +15,8 @@
     align-items: center;
     
 }
+
+.text-decorator-none{
+    text-decoration: none !important;
+    margin-right: 15px;
+}

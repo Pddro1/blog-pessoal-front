@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useLocalStorage from "react-use-localstorage";
 import User from "../../model/User";
 import { cadastroUsuario } from "../../services/Service";
+import './Cadastrar.css'
 
 
 function Cadastrar() {
@@ -110,7 +111,7 @@ function Cadastrar() {
               />
             <Box className="botao">
                 <Link to='/login' className='text-decorator-none'>
-                  <Button variant='contained' color='secondary' className='btnCancelar'>
+                  <Button variant='contained' color='secondary'>
                     Cancelar
                   </Button>
                 </Link>
