@@ -1,6 +1,6 @@
 .bg-c {
     min-height: 100vh;
-    background-image: url('https://i.pinimg.com/564x/f7/5e/2b/f75e2be6e4fd3668af626ae4f416259f.jpg');
+    background-image: url('https://i.pinimg.com/564x/9b/95/e1/9b95e12203c3163d58ea42303e78c307.jpg');
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -13,7 +13,7 @@
 .botao {
     display: flex;
     align-items: center;
-    
+    background-color: #ECEAEA;
 }
 
 .text-decorator-none{

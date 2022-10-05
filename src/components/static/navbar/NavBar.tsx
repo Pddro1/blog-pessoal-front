@@ -48,12 +48,16 @@ function NavBar() {
                   Home
                 </Typography>
               </Link>
+
             </Box>
             <Box mx={1} style={{ cursor: "pointer" }}>
-              <Typography variant="h6" className="postagem">
-                Postagens
-              </Typography>
+              
+                <Typography variant="h6" className="postagem">
+                  Postagens
+                </Typography>
+              
             </Box>
+
             <Box mx={1} style={{ cursor: "pointer" }}>
               <Typography variant="h6" className="temas">
                 Temas

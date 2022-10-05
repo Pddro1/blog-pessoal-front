@@ -1,9 +1,9 @@
-.titulo{
-  font-weight: bold;
-  color: black;
-  
+.sobre{
+  color: rgb(0, 0, 0);
+  font-weight: bold;  
 }
 
 .tab {
-  color: white;
+  background-color: #C56DBB;
+  color: white
 }

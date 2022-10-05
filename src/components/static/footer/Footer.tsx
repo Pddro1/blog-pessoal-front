@@ -4,6 +4,7 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import { Typography, Grid } from "@material-ui/core";
 import { Box } from "@mui/material";
+import "./Footer.css";
 
 function Footer() {
   return (
@@ -32,17 +33,17 @@ function Footer() {
               </Typography>
             </Box>
             <Box display="flex" alignItems="center" justifyContent="center">
-              <a className='github' href="https://github.com/Pddro1" target="_blank">
-                <GitHubIcon style={{ fontSize: 60, color: "white" }} />
+              <a href="https://github.com/Pddro1" target="_blank" >
+                <GitHubIcon className="github" />
               </a>
               <a href="https://www.instagram.com/pdro_camargo/" target="_blank">
-                <InstagramIcon style={{ fontSize: 60, color: "white" }} />
+                <InstagramIcon className="instagram" />
               </a>
               <a
                 href="https://www.linkedin.com/in/pedro-camargo15/"
                 target="_blank"
               >
-                <LinkedInIcon style={{ fontSize: 60, color: "white" }} />
+                <LinkedInIcon className="linkedin" />
               </a>
             </Box>
           </Box>

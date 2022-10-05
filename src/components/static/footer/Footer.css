@@ -1,3 +1,34 @@
 .github {
+    font-size: 35px !important;
+    color: white;
+    transition: transform 1s  !important;
+    margin-right: 4px;
+}
+
+.github:hover {
+    transform: scale(1.2) !important;
     color: black;
+}
+
+.instagram {
+    font-size: 40px !important;
+    color: white;
+    transition: transform 1s  !important;
+}
+
+.instagram:hover {
+    transform: scale(1.2) !important;
+    color: #EE58BF;
+}
+
+.linkedin {
+    font-size: 40px !important;
+    color: white;
+    transition: transform 1s !important;
+}
+
+.linkedin:hover {
+    transform: scale(1.2) !important;
+    color:#0A66C2;
+
 }

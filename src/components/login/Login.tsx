@@ -77,8 +77,8 @@ function Login() {
                 margin="normal"
                 type="password"
               />
-              <Box>
-                  <Button  className="botao" type="submit" variant="contained" color="primary">
+              <Box className="botao">
+                  <Button type="submit" variant="contained" color="primary">
                     Entrar
                   </Button>
               </Box>
