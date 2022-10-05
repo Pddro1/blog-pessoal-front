@@ -6,6 +6,8 @@ import Footer from './components/static/footer/Footer';
 import Login from './components/login/Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Cadastrar from './components/cadastrar/Cadastrar';
+import ListaTema from './components/temas/listaTema/ListaTema';
+import ListaPostagem from './components/postagem/listaPostagem/ListaPostagem';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/home' element={<Home />} />
             <Route path='/cadastrar' element={<Cadastrar />} />
+            <Route path='/temas' element={<ListaTema />}/>
+            <Route path='/postagens' element={<ListaPostagem />}/>
           </Routes>
         <Footer />
     </BrowserRouter>
