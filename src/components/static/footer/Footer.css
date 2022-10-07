@@ -1,3 +1,13 @@
+.footer1{
+    background-color: #F806CC;
+    height: 100px;
+}
+
+.footer2{
+    background-color: #F07DEA;
+    height: 60px;
+}
+
 .github {
     font-size: 35px !important;
     color: white;
