@@ -8,7 +8,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 
@@ -26,89 +26,57 @@ function NavBar() {
   };
 
   return (
-    <div id="nav" color="secondary">
-      <AppBar position="static" style={{ backgroundColor: "black" }}>
-        <Toolbar>
-          <div id="left">
-            <IconButton
-              edge="start"
-              className="menuButton"
-              color="inherit"
-              aria-label="menu"
-            >
-              <MenuIcon />
-            </IconButton>
+    <>
+    <Grid >
+       <AppBar position="static" style={{backgroundColor:'#A85CF9'}}>
+        <Toolbar variant="dense">
+          <Box>
+            <Typography variant="h6" color="inherit">
+              Blog Pessoal
+            </Typography>
+          </Box>
 
-            <Box mx={1} style={{ cursor: "pointer" }}>
-              <Link
-                to="/home"
-                style={{ textDecoration: "none", color: "white" }}
-              >
-                <Typography variant="h6" className="home">
+          <Grid container justifyContent="flex-end">
+            <Box display="flex" justifyContent="start">
+              <Box mx={1} className="cursor">
+                <Typography variant="h6" color="inherit">
                   Home
                 </Typography>
-              </Link>
+              </Box>
 
-            </Box>
-            <Box mx={1} style={{ cursor: "pointer" }}>
-              
-                <Typography variant="h6" className="postagem">
+              <Box mx={1} className="cursor">
+                <Typography variant="h6" color="inherit">
                   Postagens
                 </Typography>
-              
-            </Box>
+              </Box>
 
-            <Box mx={1} style={{ cursor: "pointer" }}>
-              <Typography variant="h6" className="temas">
-                Temas
-              </Typography>
-            </Box>
-          </div>
+              <Box mx={1} className="cursor">
+                <Link to='/temas' className="text-decorator-none">
+                  <Typography variant="h6" color="inherit">
+                    Temas
+                  </Typography>
+                </Link>
+              </Box>
 
-          <div id="right">
-            {auth && (
-              <div className="perfil">
-                <Box>
-                  <IconButton
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleMenu}
-                    color="inherit"
-                  >
-                    <AccountCircle />
-                  </IconButton>
-                  <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    open={open}
-                    onClose={handleClose}
-                  >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <Link
-                      to="/login"
-                      style={{ textDecoration: "none", color: "black" }}
-                    >
-                      <MenuItem onClick={handleClose}>Logout</MenuItem>
-                    </Link>
-                  </Menu>
-                </Box>
-              </div>
-            )}
-          </div>
+              <Box mx={1} className="cursor">
+                <Typography variant="h6" color="inherit">
+                  Cadastrar Temas
+                </Typography>
+              </Box>
+
+              <Box mx={1} className="cursor">
+                <Link to="/login" className="text-decorator-none">
+                  <Typography variant="h6" color="inherit">
+                    Logout
+                  </Typography>
+                </Link>
+              </Box>
+            </Box>
+          </Grid>
         </Toolbar>
       </AppBar>
-    </div>
+    </Grid>
+    </>
   );
 }
 

@@ -1,20 +1,45 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { Box, Card, CardActions, CardContent, Button, Typography } from '@mui/material';
 import './ListaTema.css';
+import Tema from '../../../model/Tema';
+import useLocalStorage from 'react-use-localstorage';
+import { busca } from '../../../services/Service';
 
 function ListaTema() {
 
+  let navigate = useNavigate();
+  const [temas, setTemas] = useState<Tema[]>([])
+  const [token, setToken] = useLocalStorage('token')
+
+  useEffect(() => {
+    if(token === ''){
+      alert('Você precisa estar logado amigo')
+      navigate('/login')
+    }
+  }, [token])
+
+  async function getTemas(){
+    await busca('/temas', setTemas, {
+      headers: {'Authorization': token}
+    })
+  }
+
+  useEffect(() => {
+    getTemas()
+  }, [temas.length])
+
   return (
     <>
-      <Box m={2} >
+      {temas.map(tema => {
+        <Box m={2} >
         <Card variant="outlined">
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
               Tema
             </Typography>
             <Typography variant="h5" component="h2">
-              Minha descrição
+              Tema {tema.id} - {tema.descricao}
             </Typography>
           </CardContent>
           <CardActions>
@@ -38,6 +63,7 @@ function ListaTema() {
           </CardActions>
         </Card>
       </Box>
+      })}
     </>
   );
 }

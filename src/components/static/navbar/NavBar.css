@@ -1,15 +1,4 @@
-#left{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#right{
-    display: flex;
-    justify-content: flex-end;
-}
-
-.home {
+.cursor {
     text-decoration: none;
     color: white;
     font-size: 24px;
@@ -17,44 +6,16 @@
 }
 
 
-.home:hover {
+.cursor:hover {
     transform: scale(1.2);
     color: white;
 }
 
-.home:active {
+.cursor:active {
     color: #eceaea;
 }
 
-.postagem{
+.text-decorator-none {
     text-decoration: none;
-    color: white;
-    font-size: 24px;
-    transition: transform 1s;
-}
-
-.postagem:hover {
-    transform: scale(1.2)  ;
-    color: white;
-}
-
-.postagem:active {
-    color: #eceaea;
-}
-
-.temas{
-    text-decoration: none;
-    color: white;
-    font-size: 24px;
-    transition: transform 1s;
-}
-
-.temas:hover {
-    transform: scale(1.2)  ;
-    color: white;
-}
-
-.temas:active {
-    color: #eceaea;
-}
-
+    color: #fff;
+  }

@@ -15,3 +15,8 @@ export const login = async (url:any, dados: any, setDados: any) => {
 }
 
 
+export const busca = async (url: any, setDados:any, headers: any) => {
+    const resposta = await api.get(url, headers)
+    setDados(resposta.data)
+}
+
