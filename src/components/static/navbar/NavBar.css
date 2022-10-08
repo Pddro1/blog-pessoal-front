@@ -3,6 +3,7 @@
     color: white;
     font-size: 24px;
     transition: transform 1s;
+    cursor: pointer;
 }
 
 
@@ -18,4 +19,5 @@
 .text-decorator-none {
     text-decoration: none;
     color: #fff;
-  }
+}
+
