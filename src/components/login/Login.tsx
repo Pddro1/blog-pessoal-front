@@ -77,16 +77,16 @@ function Login() {
                 margin="normal"
                 type="password"
               />
-              <Box className="botao">
-                  <Button type="submit" variant="contained" color="primary">
+              <Box >
+                  <Button type="submit" className="botaoLogin">
                     Entrar
                   </Button>
               </Box>
             </form>
             <Box display="flex">
               <Typography>Não tem uma conta?</Typography>
-              <Link to="/cadastrar" style={{ textDecoration: "none" }}>
-                <Typography>Cadastre-se</Typography>
+              <Link to="/cadastrar" className="text-decorator-none">
+                <Typography style={{marginLeft: '4px', color:'black'}}>Cadastre-se</Typography>
               </Link>
             </Box>
           </Box>
