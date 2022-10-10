@@ -1,6 +1,6 @@
 .footer1{
     background-color: #A91079;
-    height: 100px;
+    height: 120px;
 }
 
 .footer2{
@@ -8,37 +8,74 @@
     height: 60px;
 }
 
-.github {
-    font-size: 35px !important;
-    color: white;
-    transition: transform 1s  !important;
-    margin-right: 4px;
+.icons {
+    display: flex;
+    column-gap: 25px;
+    
 }
 
-.github:hover {
-    transform: scale(1.2) !important;
-    color: black;
+.icon {
+    width: 60px;
+    height: 60px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 26px;
+    color: #fff;
+    border-radius: 50%;
+    outline: 2px solid #fff;
+    transition-property:
+        outline-offset, outline-color,
+        background-color;
+    transition-duration: .25s;
 }
 
-.instagram {
-    font-size: 40px !important;
-    color: white;
-    transition: transform 1s  !important;
+.icon:hover {
+    outline-offset: 4px;
 }
 
-.instagram:hover {
-    transform: scale(1.2) !important;
-    color: #EE58BF;
+.icon:hover i {
+    animation: shake .25s;
 }
 
-.linkedin {
-    font-size: 40px !important;
-    color: white;
-    transition: transform 1s !important;
+.icon--instagram:hover {
+    background-image: radial-gradient(circle at 30% 107%,
+            #fdf497 0%, #fdf497 5%,
+            #fd5949 45%, #d6249f 60%,
+            #285AEB 90%);
+    outline-color: #e944ac;
 }
 
-.linkedin:hover {
-    transform: scale(1.2) !important;
-    color:#0A66C2;
+.icon--twitter:hover {
+    background-color: #1da1f2;
+    outline-color: #1da1f2;
+}
 
+.icon--linkedin:hover {
+    background-color: #0077b5;
+    outline-color: #0077b5;
+}
+
+.icon--github:hover {
+    background-color: #000;
+    outline-color: #000;
+}
+
+@keyframes shake {
+    10% {
+        transform: rotate(15deg);
+    }
+
+    20% {
+        transform: rotate(-15deg);
+    }
+
+    30% {
+        transform: rotate(15deg);
+    }
+
+    40% {
+        transform: rotate(-15deg);
+    }
 }

@@ -8,6 +8,7 @@ import "./CadastroTema.css";
 import { Backpack } from "@mui/icons-material";
 
 function CadastroTema() {
+
   let navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const [token, setToken] = useLocalStorage("token");
@@ -31,36 +32,29 @@ function CadastroTema() {
 
   async function findById(id: string) {
     buscaId(`/tema/${id}`, setTema, {
-      headers: {
-        Authorization: token,
-      },
+      headers: {'Authorization': token},
     });
   }
 
-  function updatedTema(e: ChangeEvent<HTMLInputElement>) {
+  function atualizarTema(event: ChangeEvent<HTMLInputElement>) {
     setTema({
       ...tema,
-      [e.target.name]: e.target.value,
+      [event.target.name]: event.target.value,
     });
   }
 
-  async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
-    e.preventDefault();
-    console.log("tema " + JSON.stringify(tema));
+  async function cadastro(event: ChangeEvent<HTMLFormElement>) {
+    event.preventDefault();
 
     if (id !== undefined) {
       console.log(tema);
       put(`/tema`, tema, setTema, {
-        headers: {
-          Authorization: token,
-        },
+        headers: {'Authorization': token},
       });
       alert("Tema atualizado com sucesso");
     } else {
       post(`/tema`, tema, setTema, {
-        headers: {
-          Authorization: token,
-        },
+        headers: {'Authorization': token},
       });
       alert("Tema cadastrado com sucesso");
     }
@@ -73,7 +67,7 @@ function CadastroTema() {
 
   return (
     <Container maxWidth="sm" className="topo">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={cadastro}>
         <Typography
           variant="h3"
           color="textSecondary"
@@ -84,9 +78,9 @@ function CadastroTema() {
         </Typography>
         <TextField
           value={tema.descricao}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => updatedTema(e)}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => atualizarTema(event)}
           id="descricao"
-          label="descricao"
+          label="Descrição"
           variant="outlined"
           name="descricao"
           margin="normal"

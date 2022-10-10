@@ -15,8 +15,9 @@ import { useNavigate } from "react-router-dom";
 import { busca } from "../../../services/Service";
 
 function ListaTema() {
-  const [temas, setTemas] = useState<Tema[]>([]);
+  
   let navigate = useNavigate();
+  const [temas, setTemas] = useState<Tema[]>([]);
   const [token, setToken] = useLocalStorage('token');
 
   useEffect(() => {
@@ -28,9 +29,7 @@ function ListaTema() {
 
   async function getTema() {
     await busca("/tema", setTemas, {
-      headers: {
-        Authorization: token,
-      },
+      headers: {'Authorization': token},
     });
   }
 
@@ -48,7 +47,7 @@ function ListaTema() {
                 Tema
               </Typography>
               <Typography variant="h5" component="h2">
-                {tema.descricao}
+                {tema.id}
               </Typography>
             </CardContent>
             <CardActions>

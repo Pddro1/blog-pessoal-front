@@ -16,7 +16,7 @@ function Footer() {
         alignItems="center"
       >
         <Grid alignItems="center" item xs={12}>
-          <Box className='footer1'>
+          <Box className="footer1">
             <Box
               paddingTop={1}
               display="flex"
@@ -32,22 +32,31 @@ function Footer() {
                 Me siga nas redes sociais{" "}
               </Typography>
             </Box>
-            <Box display="flex" alignItems="center" justifyContent="center">
-              <a href="https://github.com/Pddro1" target="_blank" >
-                <GitHubIcon className="github" />
-              </a>
-              <a href="https://www.instagram.com/pdro_camargo/" target="_blank">
-                <InstagramIcon className="instagram" />
+            <Box className="icons" display="flex" justifyContent="center">
+              <a
+                href="https://www.instagram.com/pdro_camargo/"
+                className="icon icon--instagram"
+                target="_blank"
+              >
+                <i className="ri-instagram-line"></i>
               </a>
               <a
                 href="https://www.linkedin.com/in/pedro-camargo15/"
+                className="icon icon--linkedin"
                 target="_blank"
               >
-                <LinkedInIcon className="linkedin" />
+                <i className="ri-linkedin-line"></i>
+              </a>
+              <a
+                href="https://github.com/Pddro1"
+                className="icon icon--github"
+                target="_blank"
+              >
+                <i className="ri-github-line"></i>
               </a>
             </Box>
           </Box>
-          <Box className='footer2'>
+          <Box className="footer2">
             <Box paddingTop={1}>
               <Typography
                 variant="subtitle2"
