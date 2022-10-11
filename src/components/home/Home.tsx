@@ -3,7 +3,7 @@ import { Typography, Box, Grid, Button } from "@mui/material";
 import TabPostagem from "../../components/postagem/tabPostagem/TabPostagem";
 import "./Home.css";
 import ModalPostagem from "../postagem/modalPostagem/ModalPostagem";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useLocalStorage from "react-use-localstorage";
 import { useSelector } from "react-redux";
 import { TokenState } from "../../store/token/tokenReducer";
@@ -58,9 +58,11 @@ function Home() {
               <Box marginRight={1}>
                 <ModalPostagem />
               </Box>
-              <Button variant="contained" className="botaoPost">
-                Ver Postagens
-              </Button>
+              <Link to='/postagens' className='text-decorator-none'>
+                <Button variant="contained" className="botaoPost">
+                  Ver Postagens
+                </Button>
+              </Link>
             </Box>
           </Box>
         </Grid>
