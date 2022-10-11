@@ -1,96 +1,111 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
-import { Button, Container, TextField, Typography } from "@mui/material";
-import { buscaId, post, put } from "../../../services/Service";
-import { useNavigate, useParams } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
-import Tema from "../../../model/Tema";
-import "./CadastroTema.css";
-import { Backpack } from "@mui/icons-material";
+import { Button, Container, TextField, Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import useLocalStorage from 'react-use-localstorage';
+import Tema from '../../../model/Tema';
+import { buscaId, post, put } from '../../../services/Service';
 
 function CadastroTema() {
-
   let navigate = useNavigate();
+
   const { id } = useParams<{ id: string }>();
-  const [token, setToken] = useLocalStorage("token");
+
+  const [token, setToken] = useLocalStorage('token');
+
   const [tema, setTema] = useState<Tema>({
     id: 0,
-    descricao: "",
+    descricao: '',
   });
 
   useEffect(() => {
-    if (token == "") {
-      alert("Você precisa estar logado");
-      navigate("/login");
+    if (token === '') {
+      alert('Ta tirando');
+      navigate('/login');
     }
   }, [token]);
 
-  useEffect(() => {
-    if (id !== undefined) {
-      findById(id);
-    }
-  }, [id]);
-
-  async function findById(id: string) {
-    buscaId(`/tema/${id}`, setTema, {
-      headers: {'Authorization': token},
+  async function temaById(id: string) {
+    await buscaId(`/temas/${id}`, setTema, {
+      headers: { Authorization: token },
     });
   }
 
-  function atualizarTema(event: ChangeEvent<HTMLInputElement>) {
+  useEffect(() => {
+    if (id !== undefined) {
+      temaById(id);
+    }
+  }, [id]);
+
+  function updatedModel(event: ChangeEvent<HTMLInputElement>) {
     setTema({
       ...tema,
       [event.target.name]: event.target.value,
     });
   }
 
-  async function cadastro(event: ChangeEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function cadastrar(event: ChangeEvent<HTMLFormElement>) {
+    event.preventDefault()
 
-    if (id !== undefined) {
-      console.log(tema);
-      put(`/tema`, tema, setTema, {
-        headers: {'Authorization': token},
-      });
-      alert("Tema atualizado com sucesso");
+    if(id !== undefined) {
+      try {
+        await put('/temas', tema, setTema, {
+          headers: {'Authorization': token}
+        })
+        alert('Tema atualizado com sucesso')
+        navigate('/temas')
+      } catch (error) {
+        alert('Falha ao atualizar o tema, reveja o nome, por favor')
+      }
     } else {
-      post(`/tema`, tema, setTema, {
-        headers: {'Authorization': token},
-      });
-      alert("Tema cadastrado com sucesso");
+      try {
+        await post('/temas', tema, setTema, {
+          headers: {'Authorization': token}
+        })
+        alert('Tema cadastrado com sucesso')
+        navigate('/temas')
+      } catch (error) {
+        alert('Falha ao criar o novo tema, por favor, verifique o nome.')
+      }
     }
-    back();
   }
 
-  function back() {
-    navigate("/temas");
-  }
+
 
   return (
-    <Container maxWidth="sm" className="topo">
-      <form onSubmit={cadastro}>
-        <Typography
-          variant="h3"
-          color="textSecondary"
-          component="h1"
-          align="center"
-        >
-          Formulário de cadastro tema
-        </Typography>
-        <TextField
-          value={tema.descricao}
-          onChange={(event: ChangeEvent<HTMLInputElement>) => atualizarTema(event)}
-          id="descricao"
-          label="Descrição"
-          variant="outlined"
-          name="descricao"
-          margin="normal"
-          fullWidth
-        />
-        <Button type="submit" variant="contained" color="primary">
-          Finalizar
-        </Button>
-      </form>
-    </Container>
+    <>
+      <Container maxWidth="sm">
+        <form onSubmit={cadastrar}>
+          <Typography variant="h3" component="h1">
+            Novo tema
+          </Typography>
+
+          <TextField
+            label="Nome do tema"
+            value={tema.descricao}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              updatedModel(event)
+            }
+            id="descricao"
+            name="descricao"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+          />
+
+          <Box display="flex" justifyContent="space-around">
+            <Link to="/home">
+              <Button variant="contained" color="secondary">
+                Cancelar
+              </Button>
+            </Link>
+            <Button type="submit" variant="contained" color="primary">
+              Cadastrar
+            </Button>
+          </Box>
+        </form>
+      </Container>
+    </>
   );
 }
 

@@ -1,22 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import {Typography, Button, Box, Card, CardActions, CardContent } from "@mui/material"
-import Postagem from '../../../model/Postagem';
-import { buscaId, deleteId } from '../../../services/Service';
-import './DeletarPostagem.css';
+import React, { useEffect, useState } from 'react';
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+} from '@mui/material';
+
 import { useNavigate, useParams } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
 
-function DeletarPostagem() {
+import { buscaId, deleteId } from '../../../services/Service';
 
-  let navigate = useNavigate();
+import './DeletarPostagem.css';
+import Postagem from '../../../model/Postagem';
+
+function DeletarPostagem() {
+  let history = useNavigate();
+
   const { id } = useParams<{ id: string }>();
-  const [token, setToken] = useLocalStorage("token");
+
+  const [token, setToken] = useLocalStorage('token');
+
   const [post, setPosts] = useState<Postagem>();
 
   useEffect(() => {
-    if (token == "") {
-      alert("Você precisa estar logado");
-      navigate("/login");
+    if (token === '') {
+      alert('Você precisa estar logado');
+      history('/login');
     }
   }, [token]);
 
@@ -28,48 +40,65 @@ function DeletarPostagem() {
 
   async function findById(id: string) {
     buscaId(`/postagens/${id}`, setPosts, {
-      headers: {'Authorization': token},
+      headers: {
+        Authorization: token,
+      },
     });
   }
 
-  function sim() {
-    navigate("/postagens");
-    deleteId(`/postagens/${id}`, {
-      headers: { Authorization: token },
-    });
-    alert("Postagem Deletada com Sucesso!");
+  async function sim() {
+    history('/posts');
+
+    try {
+      await deleteId(`/postagens/${id}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      alert('Postagem deletada com sucesso');
+    } catch (error) {
+      alert('Erro ao deletar');
+    }
   }
 
   function nao() {
-    navigate("/posts");
+    history('/posts');
   }
-   
+
   return (
     <>
       <Box m={2}>
-        <Card variant="outlined" >
+        <Card variant="outlined">
           <CardContent>
             <Box justifyContent="center">
               <Typography color="textSecondary" gutterBottom>
                 Deseja deletar a Postagem:
               </Typography>
-              <Typography color="textSecondary" >
-              {post?.titulo}
-              </Typography>
+              <Typography color="textSecondary">{post?.titulo}</Typography>
             </Box>
-
           </CardContent>
           <CardActions>
-            <Box display="flex" justifyContent="start" ml={1.0} mb={2} >
+            <Box display="flex" justifyContent="start" ml={1.0} mb={2}>
               <Box mx={2}>
-              <Button onClick={sim} variant="contained" className="marginLeft" size='large' color="primary">
-                Sim
-              </Button>
+                <Button
+                  onClick={sim}
+                  variant="contained"
+                  className="marginLeft"
+                  size="large"
+                  color="primary"
+                >
+                  Sim
+                </Button>
               </Box>
               <Box>
-              <Button onClick={nao} variant="contained" size='large' color="secondary">
-                Não
-              </Button>
+                <Button
+                  onClick={nao}
+                  variant="contained"
+                  size="large"
+                  color="secondary"
+                >
+                  Não
+                </Button>
               </Box>
             </Box>
           </CardActions>
@@ -78,4 +107,5 @@ function DeletarPostagem() {
     </>
   );
 }
+
 export default DeletarPostagem;

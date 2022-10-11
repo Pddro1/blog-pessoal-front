@@ -1,60 +1,65 @@
-import React, { useEffect, useState } from "react";
 import {
   Box,
+  Button,
   Card,
   CardActions,
   CardContent,
-  Button,
+  Container,
   Typography,
 } from "@mui/material";
-import "./DeletarTema.css";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useLocalStorage from "react-use-localstorage";
-import { buscaId, deleteId } from "../../../services/Service";
 import Tema from "../../../model/Tema";
+import { buscaId, deleteId } from "../../../services/Service";
 
 function DeletarTema() {
-
   let navigate = useNavigate();
+
   const { id } = useParams<{ id: string }>();
+
   const [token, setToken] = useLocalStorage("token");
-  const [tema, setTema] = useState<Tema>();
 
   useEffect(() => {
-    if (token == "") {
-      alert("Você precisa estar logado");
+    if (token === "") {
+      alert("Denovo???");
       navigate("/login");
     }
   }, [token]);
 
-  useEffect(() => {
-    if (id !== undefined) {
-      findById(id);
-    }
-  }, [id]);
+  const [tema, setTema] = useState<Tema>();
 
-  async function findById(id: string) {
-    buscaId(`/tema/${id}`, setTema, {
-      headers: {
-        Authorization: token,
-      },
-    });
-  }
-
-  function sim() {
-    navigate("/temas");
-    deleteId(`/tema/${id}`, {
+  async function temaById(id: string) {
+    await buscaId(`/temas/${id}`, setTema, {
       headers: { Authorization: token },
     });
-    alert("Tema Deletado com Sucesso!");
   }
+
+  useEffect(() => {
+    if (id !== undefined) {
+      temaById(id);
+    }
+  }, [id]);
 
   function nao() {
     navigate("/temas");
   }
 
+  async function sim() {
+    try {
+      await deleteId(`/temas/${id}`, {
+        headers: { Authorization: token },
+      });
+      alert("Tema apagado com sucesso.");
+      navigate("/temas");
+    } catch (error) {
+      alert("Erro ao deletar o tema");
+      navigate("/temas");
+    }
+  }
+
   return (
-    <>
+    <Container>
       <Box m={2}>
         <Card variant="outlined">
           <CardContent>
@@ -65,6 +70,7 @@ function DeletarTema() {
               <Typography color="textSecondary">{tema?.descricao}</Typography>
             </Box>
           </CardContent>
+
           <CardActions>
             <Box display="flex" justifyContent="start" ml={1.0} mb={2}>
               <Box mx={2}>
@@ -92,7 +98,8 @@ function DeletarTema() {
           </CardActions>
         </Card>
       </Box>
-    </>
+    </Container>
   );
 }
+
 export default DeletarTema;

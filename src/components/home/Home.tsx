@@ -28,13 +28,14 @@ function Home() {
       >
         <Grid alignItems="center" item xs={12} className="grid1">
           <Box paddingX={20} paddingY={20}>
+            
             <Typography
               variant="h3"
               gutterBottom
               color="textPrimary"
               component="h3"
               align="center"
-              className="titulo"
+              className="top"
             >
               Olá Tudo Bem?
             </Typography>
@@ -44,7 +45,7 @@ function Home() {
               color="textPrimary"
               component="h5"
               align="center"
-              className="titulo"
+              className="top"
             >
               Seja Bem Vindo ao meu Espaço
             </Typography>
@@ -52,7 +53,7 @@ function Home() {
               <Box marginRight={1}>
                 <ModalPostagem />
               </Box>
-              <Button variant="contained" className="botao" color="secondary">
+              <Button variant="contained" className="botaoPost">
                 Ver Postagens
               </Button>
             </Box>

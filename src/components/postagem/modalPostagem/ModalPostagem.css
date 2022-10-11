@@ -3,6 +3,11 @@
 }
 
 .btnModal{
-  border-color: white !important;
-  background-color: white !important;
+  color: black !important;
+  background-color: #9CFF2E !important;
+}
+
+.btnModal:hover{
+  scale: 1.1;
+  background-color: #38E54D !important;
 }
