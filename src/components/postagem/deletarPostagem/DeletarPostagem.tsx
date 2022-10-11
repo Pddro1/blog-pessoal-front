@@ -9,26 +9,26 @@ import {
 } from '@mui/material';
 
 import { useNavigate, useParams } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
-
 import { buscaId, deleteId } from '../../../services/Service';
-
 import './DeletarPostagem.css';
 import Postagem from '../../../model/Postagem';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/token/tokenReducer';
 
 function DeletarPostagem() {
-  let history = useNavigate();
 
+  let navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-
-  const [token, setToken] = useLocalStorage('token');
+  const token = useSelector<TokenState, TokenState['token']>(
+    (state) => state.token
+  )
 
   const [post, setPosts] = useState<Postagem>();
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado');
-      history('/login');
+      alert('Você precisa estar Logado!');
+      navigate('/login');
     }
   }, [token]);
 
@@ -47,7 +47,7 @@ function DeletarPostagem() {
   }
 
   async function sim() {
-    history('/posts');
+    navigate('/postagens');
 
     try {
       await deleteId(`/postagens/${id}`, {
@@ -62,7 +62,7 @@ function DeletarPostagem() {
   }
 
   function nao() {
-    history('/posts');
+    navigate('/post');
   }
 
   return (

@@ -8,37 +8,33 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
 import Tema from '../../../model/Tema';
 import { busca } from '../../../services/Service';
+import { TokenState } from '../../../store/token/tokenReducer';
 
 function ListaTemas() {
-  //trazer a função de navegação interna
+
   let navigate = useNavigate();
-
-  // estado para gerenciar os temas que virão do backend
   const [temas, setTemas] = useState<Tema[]>([]);
+  const token = useSelector<TokenState, TokenState['token']>(
+    (state) => state.token
+  )
 
-  // trazer o token do navegador para dentro do blog
-  const [token, setToken] = useLocalStorage('token');
-
-  //verificar se a pessoa tem token, se não tiver, mandar pra login
   useEffect(() => {
     if (token === '') {
-      alert('Ai não meu bom');
+      alert('Você precisa estar Logado!');
       navigate('/login');
     }
   }, [token]);
 
-  //ta dando um get nos temas...se tiver, vai vir
   async function getTemas() {
     await busca('/temas', setTemas, {
       headers: { Authorization: token },
     });
   }
 
-  //função para disparar a busca de temas assim que a tela for carregada
   useEffect(() => {
     getTemas();
   }, [temas.length]);

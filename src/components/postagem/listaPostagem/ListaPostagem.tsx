@@ -1,9 +1,10 @@
 import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material'
 import React, {useState, useEffect} from 'react'
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
-import useLocalStorage from 'react-use-localstorage';
 import Postagem from '../../../model/Postagem';
 import { busca } from '../../../services/Service';
+import { TokenState } from '../../../store/token/tokenReducer';
 
 
 function ListaPostagem() {
@@ -12,11 +13,13 @@ function ListaPostagem() {
 
   const [postagens, setPostagens] = useState<Postagem[]>([])
 
-  const [token, setToken] = useLocalStorage('token')
+  const token = useSelector<TokenState, TokenState['token']>(
+    (state) => state.token
+  )
 
   useEffect(() => {
     if (token === '') {
-      alert('Ai não meu bom')
+      alert('Você precisa estar Logado!')
       navigate('/login')
     }
   }, [token])

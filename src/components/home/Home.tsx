@@ -5,14 +5,19 @@ import "./Home.css";
 import ModalPostagem from "../postagem/modalPostagem/ModalPostagem";
 import { useNavigate } from "react-router-dom";
 import useLocalStorage from "react-use-localstorage";
+import { useSelector } from "react-redux";
+import { TokenState } from "../../store/token/tokenReducer";
 
 function Home() {
+
   let navigate = useNavigate();
-  const [token, setToken] = useLocalStorage("token");
+  const token = useSelector<TokenState, TokenState['token']>(
+    (state) => state.token
+  )
 
   useEffect(() => {
     if (token == "") {
-      alert("Você Precisa estar Logado");
+      alert("Você precisa estar Logado!");
       navigate("/login");
     }
   }, [token]);

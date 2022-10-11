@@ -8,21 +8,24 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
 import Tema from "../../../model/Tema";
 import { buscaId, deleteId } from "../../../services/Service";
+import { TokenState } from "../../../store/token/tokenReducer";
 
 function DeletarTema() {
   let navigate = useNavigate();
 
   const { id } = useParams<{ id: string }>();
 
-  const [token, setToken] = useLocalStorage("token");
+  const token = useSelector<TokenState, TokenState['token']>(
+    (state) => state.token
+  )
 
   useEffect(() => {
     if (token === "") {
-      alert("Denovo???");
+      alert("Você precisa estar Logado!");
       navigate("/login");
     }
   }, [token]);

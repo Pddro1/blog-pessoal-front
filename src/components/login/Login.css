@@ -7,9 +7,9 @@
 }
 
 .botaoLogin {
-    background-color: #3c67e3;
+    background-color: #3c67e3 !important;
     display: flex;
-    color: white;
+    color: white !important;
     align-items: center;
     justify-content: center;
     text-decoration: none;
