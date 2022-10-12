@@ -2,7 +2,10 @@
   margin-top: 20px;
 }
 
-.text-decorator-none{
-  color: white;
-  text-decoration: none;
+.cadastro{
+  background-color: #054A91 !important;
+}
+
+.cancelar{
+  background-color: red !important;
 }

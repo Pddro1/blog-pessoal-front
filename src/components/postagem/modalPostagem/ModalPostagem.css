@@ -4,10 +4,6 @@
 
 .btnModal{
   color: black !important;
-  background-color: #9CFF2E !important;
+  background-color: #FDB926 !important;
 }
 
-.btnModal:hover{
-  scale: 1.1;
-  background-color: #38E54D !important;
-}

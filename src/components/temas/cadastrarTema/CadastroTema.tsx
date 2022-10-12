@@ -7,6 +7,7 @@ import useLocalStorage from 'react-use-localstorage';
 import Tema from '../../../model/Tema';
 import { buscaId, post, put } from '../../../services/Service';
 import { TokenState } from '../../../store/token/tokenReducer';
+import "./CadastroTema.css";
 
 function CadastroTema() {
   let navigate = useNavigate();
@@ -98,14 +99,14 @@ function CadastroTema() {
           />
 
           <Box display="flex" justifyContent="space-around">
-            <Link to="/home">
-              <Button variant="contained" color="secondary">
+            <Button type="submit" variant="contained" className='cadastro'>
+              Cadastrar
+            </Button>
+            <Link to="/home" className="text-decoration-none">
+              <Button variant="contained" className='cancelar'>
                 Cancelar
               </Button>
             </Link>
-            <Button type="submit" variant="contained" color="primary">
-              Cadastrar
-            </Button>
           </Box>
         </form>
       </Container>

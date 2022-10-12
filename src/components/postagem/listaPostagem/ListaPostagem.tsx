@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Postagem from '../../../model/Postagem';
 import { busca } from '../../../services/Service';
 import { TokenState } from '../../../store/token/tokenReducer';
+import "./ListaPostagem.css";
 
 
 function ListaPostagem() {
@@ -58,14 +59,14 @@ function ListaPostagem() {
 
               <Link to={`/editarPost/${postagem.id}`} className="text-decoration-none" >
                 <Box mx={1}>
-                  <Button variant="contained" size='small' color="primary" >
+                  <Button variant="contained" size='small' className="atualizar" >
                     atualizar
                   </Button>
                 </Box>
               </Link>
               <Link to={`/apagarPost/${postagem.id}`} className="text-decoration-none">
                 <Box mx={1}>
-                  <Button variant="contained" size='small' color="secondary">
+                  <Button variant="contained" size='small' style={{backgroundColor: 'red'}} >
                     deletar
                   </Button>
                 </Box>

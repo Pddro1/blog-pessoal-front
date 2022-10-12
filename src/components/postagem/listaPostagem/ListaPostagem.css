@@ -1,4 +1,13 @@
-.text-decorator-none{
+.text-decorator-none {
   text-decoration: none;
   color: white;
 }
+
+.deletar {
+  background-color: red !important;
+}
+
+.atualizar{
+  background-color: #054a91 !important;
+}
+

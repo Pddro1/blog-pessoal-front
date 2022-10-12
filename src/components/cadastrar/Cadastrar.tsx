@@ -1,131 +1,170 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
-import User from "../../model/User";
-import { cadastroUsuario } from "../../services/Service";
-import './Cadastrar.css'
+import { Typography } from '@material-ui/core';
+import { Box, Button, Grid, TextField } from '@mui/material';
+import { ChangeEvent, useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import User from '../../model/User';
+import { cadastroUsuario } from '../../services/Service';
+import './Cadastrar.css';
+
+function CadastroUsuario() {
 
 
-function Cadastrar() {
+  let navigate = useNavigate();
+  const [confirmarSenha, setConfirmarSenha] = useState<String>('');
+  const [cadastro, setCadastro] = useState(false)
 
-  let navigate = useNavigate()
-  const [confirmarSenha, setConfirmarSenha] = useState<String>('')
-  const [userCadastrar, setUserCadastrar] = useState<User>({
+  function confirmarSenhaHandle(event: ChangeEvent<HTMLInputElement>) {
+    setConfirmarSenha(event.target.value);
+  }
+
+  // One way binding
+  const [user, setUser] = useState<User>({
     id: 0,
     nome: '',
     usuario: '',
     senha: '',
-    foto: ''
-  })
+    foto: '',
+  });
 
   const [userResult, setUserResult] = useState<User>({
     id: 0,
     nome: '',
     usuario: '',
     senha: '',
-    foto: ''
-  })
+    foto: '',
+  });
 
-  function confirmarSenhaHandle(event: ChangeEvent<HTMLInputElement>){
-    setConfirmarSenha(event.target.value)
-  }
-
-  function updateModel(event: ChangeEvent<HTMLInputElement>){
-    setUserCadastrar({
-      ...userCadastrar,
-      [event.target.name]: event.target.value
-    })
-  }
-
-  async function conectar(event: ChangeEvent<HTMLFormElement>){
-    event.preventDefault();
-    if(confirmarSenha == userCadastrar.senha){
-      cadastroUsuario('usuarios/cadastrar', userCadastrar, setUserResult)
-      
-      alert('Cadastrado com Sucesso!')
+  useEffect(() => {
+    if(user.nome.length > 3 && user.usuario !== '' && user.senha.length >= 8 ) {
+      setCadastro(true)
     }
-    else{
-      alert('Dados inconsistentes. Favor verificar as informações de cadastro.')
+  }, [user])
+
+  function updateModel(event: ChangeEvent<HTMLInputElement>) {
+    setUser({
+      ...user,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  //  == > comparação basica => 2 = '2'
+  //  === > comparação estrita => 2 != '2'
+
+  async function cadastrar(event: ChangeEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (confirmarSenha === user.senha && user.senha.length >= 8) {
+      try {
+        await cadastroUsuario('usuarios/cadastrar', user, setUserResult);
+        alert('Usuário criado com sucesso. Efetue seu login, por favor.');
+      } catch (error) {
+        alert('Falha ao cadastrar o usuário. Por favor, confira os campos');
+      }
+    } else {
+      alert(
+        'Senhas divergentes, ou menores que 8 caracteres. Por favor, verifique os campos.'
+      );
     }
   }
 
   useEffect(() => {
-    if(userResult.id !== 0){
-      navigate('/login')
+    if (userResult.id !== 0) {
+      navigate('/login');
     }
-  }, [userResult])
+  }, [userResult]);
 
   return (
     <>
-      <Grid
-        container
-        direction="row"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Grid item xs={6} alignItems="center" justifyContent="center">
-          <Box padding={10}>
-            <form onSubmit={conectar}>
+      <Grid container alignItems="center" justifyContent="center" direction='row-reverse'>
+        <Grid item xs={6} className="bg-c"></Grid>
+        <Grid container xs={6} justifyContent="center">
+          <Grid item xs={8} justifyContent="center">
+            <form onSubmit={cadastrar}>
               <Typography variant="h2">Cadastre-se</Typography>
+
               <TextField
-                onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
-                value={userCadastrar.nome}
-                id="nome"
+                required
                 name="nome"
-                label='Digite seu Nome'
-                variant="filled"
-                fullWidth
-                margin="normal"/>
-              <TextField
-                onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
-                value={userCadastrar.usuario}
-                id="usuario"
-                name="usuario"
-                label="Usuário"
+                value={user.nome}
+                id="nome"
+                label="Nome completo"
                 variant="filled"
                 fullWidth
                 margin="normal"
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  updateModel(event)
+                }
               />
               <TextField
-                onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
-                value={userCadastrar.senha}
-                id="senha"
+                required
+                name="usuario"
+                value={user.usuario}
+                id="usuario"
+                label="Usuário (email)"
+                variant="filled"
+                fullWidth
+                margin="normal"
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  updateModel(event)
+                }
+              />
+              <TextField
+                required
+                name="foto"
+                value={user.foto}
+                id="foto"
+                label="Foto (url)"
+                variant="filled"
+                fullWidth
+                margin="normal"
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  updateModel(event)
+                }
+              />
+              <TextField
+                required
                 name="senha"
+                value={user.senha}
+                id="senha"
                 label="Senha"
                 variant="filled"
                 fullWidth
-                margin="normal"
                 type="password"
+                margin="normal"
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  updateModel(event)
+                }
               />
               <TextField
-                onChange={(event: ChangeEvent<HTMLInputElement>) => confirmarSenhaHandle(event)}
+                required
+                name="confirmarSenha"
                 value={confirmarSenha}
                 id="confirmarSenha"
-                name="confirmarSenha"
-                label='Confirmar a Senha'
+                label="Confirmar senha"
                 variant="filled"
                 fullWidth
+                type="password"
                 margin="normal"
-                type='password'
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  confirmarSenhaHandle(event)
+                }
               />
-            <Box className="botao">
-                <Link to='/login' className='text-decorator-none'>
-                  <Button variant='contained' color='secondary'>
+
+              <Box display="flex" justifyContent="space-around" marginTop={2} >
+                <Link to="/login" className="text-decoration-none">
+                  <Button type="submit" variant="contained" color="secondary">
                     Cancelar
                   </Button>
                 </Link>
-                <Button type="submit" variant="contained" color="primary">
+                <Button type="submit" variant="contained" color="primary" disabled={!cadastro}>
                   Cadastrar
                 </Button>
-            </Box>
+              </Box>
             </form>
-          </Box>
+          </Grid>
         </Grid>
-        <Grid item xs={6} className="bg-c"></Grid>
       </Grid>
     </>
   );
 }
 
-export default Cadastrar;
+export default CadastroUsuario;

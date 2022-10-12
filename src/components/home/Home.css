@@ -3,7 +3,7 @@
 }
 
 .caixa{
-  background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1513&q=80');
+  background-image: url('https://images4.alphacoders.com/936/936378.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -26,9 +26,10 @@
 
 
 .botaoPost{
-  background-color: #3F51B5 !important;
+  background-color: #054A91 !important;
   color: white !important;
 }
+
 
 .postagens{
   background-color: white;

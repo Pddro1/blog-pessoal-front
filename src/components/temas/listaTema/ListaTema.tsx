@@ -64,7 +64,7 @@ function ListaTemas() {
                       <Button
                         variant="contained"
                         size="small"
-                        color="primary"
+                        className='atualizar'
                       >
                         atualizar
                       </Button>
@@ -75,7 +75,7 @@ function ListaTemas() {
                       <Button
                         variant="contained"
                         size="small"
-                        color="secondary"
+                        className='deletar'
                       >
                         deletar
                       </Button>
