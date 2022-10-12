@@ -15,7 +15,7 @@
   width: 100%;
   max-width: 600px;
   background-color: transparent;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(px);
 }
 
 

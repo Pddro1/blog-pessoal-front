@@ -1,10 +1,10 @@
 .navbar{
-    background-color: #00509d !important;
+    background-color: #003566 !important;
 }
 
 .cursor {
     text-decoration: none;
-    color: white;
+    color: #FDB926;
     font-size: 24px;
     transition: transform 1s;
     cursor: pointer;
