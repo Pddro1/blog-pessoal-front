@@ -4,7 +4,7 @@
 
 .cursor {
     text-decoration: none;
-    color: #FDB926;
+    color: #ffd60a;
     font-size: 24px;
     transition: transform 1s;
     cursor: pointer;
