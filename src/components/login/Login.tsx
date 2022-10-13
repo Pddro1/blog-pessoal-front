@@ -6,7 +6,7 @@ import UsuarioLogin from "../../model/UsuarioLogin";
 import { login } from "../../services/Service";
 import "./Login.css";
 import { useDispatch } from "react-redux";
-import { addToken } from "../../store/token/Action";
+import { addId, addToken } from "../../store/token/Action";
 
 function Login() {
 
@@ -22,6 +22,15 @@ function Login() {
     token: ''
   });
 
+  const [respUserLogin, setRespUserLogin] = useState<UsuarioLogin>({
+    id: 0,
+    nome: '',
+    usuario: '',
+    senha: '',
+    foto: '',
+    token: '',
+  });
+
   function updateModel(event: ChangeEvent<HTMLInputElement>){
     setUserLogin({
       ...userLogin,
@@ -32,7 +41,7 @@ function Login() {
   async function conectar(event: ChangeEvent<HTMLFormElement>){
     event.preventDefault();
     try{
-      await login('usuarios/logar', userLogin, setToken)
+      await login('usuarios/logar', userLogin, setRespUserLogin)
 
       alert('Logado com Sucesso!!!');
     }catch(error){
@@ -46,6 +55,14 @@ function Login() {
       navigate('/home')
     }
   }, [token])
+
+  useEffect(() => {
+    if(respUserLogin.token !== ''){
+      dispatch(addToken(respUserLogin.token))
+      dispatch(addId(respUserLogin.id.toString()))
+      navigate('/home')
+    }
+  },[respUserLogin.token])
 
   return (
     <>

@@ -14,6 +14,7 @@ import DeletarPostagem from "./components/postagem/deletarPostagem/DeletarPostag
 import DeletarTema from "./components/temas/deletarTema/DeletarTema";
 import { Provider } from "react-redux";
 import store from "./store/Store";
+import Perfil from "./components/perfil/Perfil";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastrar" element={<Cadastrar />} />
+          <Route path='/perfil' element={<Perfil />} />
 
           <Route path="/home" element={<Home />} />
 

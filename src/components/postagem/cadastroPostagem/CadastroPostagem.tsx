@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Postagem from "../../../model/Postagem";
 import Tema from "../../../model/Tema";
+import User from "../../../model/User";
 import { busca, buscaId, post, put } from "../../../services/Service";
 import { TokenState } from "../../../store/token/tokenReducer";
 
@@ -24,6 +25,9 @@ function CadastroPostagem() {
   const [temas, setTemas] = useState<Tema[]>([]);
   const token = useSelector<TokenState, TokenState['token']>(
     (state) => state.token
+  )
+  const userId = useSelector<TokenState, TokenState['id']>(
+    (state) => state.id
   )
 
   const [tema, setTema] = useState<Tema>({
@@ -36,7 +40,16 @@ function CadastroPostagem() {
     titulo: "",
     texto: "",
     tema: null,
+    usuario: null
   });
+
+  const [usuario, setUsuario] = useState<User>({
+    id: +userId,
+    nome: '',
+    usuario: '',
+    senha: '',
+    foto: '',
+  })
 
   useEffect(() => {
     if (token === "") {
@@ -49,6 +62,7 @@ function CadastroPostagem() {
     setPostagem({
       ...postagem,
       tema: tema,
+      usuario: usuario
     });
   }, [tema]);
 
@@ -121,8 +135,8 @@ function CadastroPostagem() {
             value={postagem.titulo}
             onChange={(event: ChangeEvent<HTMLInputElement>) => updatedPostagem(event)}
             id="titulo"
-            label="titulo"
-            variant="outlined"
+            label="Titulo"
+            variant="filled"
             name="titulo"
             margin="normal"
             fullWidth
@@ -132,9 +146,9 @@ function CadastroPostagem() {
             value={postagem.texto}
             onChange={(event: ChangeEvent<HTMLInputElement>) => updatedPostagem(event)}
             id="texto"
-            label="texto"
+            label="Texto"
             name="texto"
-            variant="outlined"
+            variant="filled"
             margin="normal"
             fullWidth
           />
@@ -161,7 +175,7 @@ function CadastroPostagem() {
             <Button
               type="submit"
               variant="contained"
-              color="primary"
+              className='atualizar'
             >
               Finalizar
             </Button>

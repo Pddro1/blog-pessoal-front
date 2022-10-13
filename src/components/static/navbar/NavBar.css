@@ -2,10 +2,15 @@
     background-color: #003566 !important;
 }
 
+.menu{
+    width: 250px;
+    background-color: #003566;
+}
+
 .cursor {
     text-decoration: none;
     color: #ffd60a;
-    font-size: 24px;
+    font-size: 18px;
     transition: transform 1s;
     cursor: pointer;
 }

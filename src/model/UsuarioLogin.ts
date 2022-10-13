@@ -3,7 +3,7 @@ interface UserLogin {
     nome: string;
     usuario: string;
     foto: string;
-    token?: string | null;
+    token: string;
     senha: string;
 }
 
