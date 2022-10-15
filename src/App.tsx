@@ -15,36 +15,38 @@ import DeletarTema from "./components/temas/deletarTema/DeletarTema";
 import { Provider } from "react-redux";
 import store from "./store/Store";
 import Perfil from "./components/perfil/Perfil";
-
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (
-    <BrowserRouter>
     <Provider store={store}>
-      <NavBar />
-      <div style={{minHeight: '80vh'}}>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cadastrar" element={<Cadastrar />} />
-          <Route path='/perfil' element={<Perfil />} />
+      <ToastContainer />
+      <BrowserRouter>
+        <NavBar />
+        <div style={{ minHeight: "80vh" }}>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cadastrar" element={<Cadastrar />} />
+            <Route path="/perfil" element={<Perfil />} />
 
-          <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<Home />} />
 
-          <Route path="/postagens" element={<ListaPostagem />} />
-          <Route path="/formularioPostagem" element={<CadastroPostagem />} />
-          <Route path="/editarPost/:id" element={<CadastroPostagem />} />
-          <Route path="/apagarPost/:id" element={<DeletarPostagem />} />
+            <Route path="/postagens" element={<ListaPostagem />} />
+            <Route path="/formularioPostagem" element={<CadastroPostagem />} />
+            <Route path="/editarPost/:id" element={<CadastroPostagem />} />
+            <Route path="/apagarPost/:id" element={<DeletarPostagem />} />
 
-          <Route path="/temas" element={<ListaTema />} />
-          <Route path="/formularioTema/" element={<CadastroTema />} />
-          <Route path="/atualizarTema/:id" element={<CadastroTema />} />
-          <Route path="/apagarTema/:id" element={<DeletarTema />} />
-        </Routes>
-      </div>
-      <Footer />
-      </Provider>
-    </BrowserRouter>
+            <Route path="/temas" element={<ListaTema />} />
+            <Route path="/formularioTema/" element={<CadastroTema />} />
+            <Route path="/atualizarTema/:id" element={<CadastroTema />} />
+            <Route path="/apagarTema/:id" element={<DeletarTema />} />
+          </Routes>
+        </div>
+        <Footer />
+      </BrowserRouter>
+    </Provider>
   );
 }
 

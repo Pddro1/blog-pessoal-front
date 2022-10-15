@@ -18,6 +18,10 @@ function ListaPostagem() {
     (state) => state.token
   )
 
+  const userId = useSelector<TokenState, TokenState['id']>(
+    (state) => state.id
+    )
+
   useEffect(() => {
     if (token === '') {
       alert('Você precisa estar Logado!')
@@ -59,7 +63,8 @@ function ListaPostagem() {
 
           </CardContent>
           <CardActions>
-            <Box display="flex" justifyContent="center" mb={1.5}>
+            {postagem.usuario?.id === +userId ? (
+              <Box display="flex" justifyContent="center" mb={1.5}>
 
               <Link to={`/editarPost/${postagem.id}`} className="text-decoration-none" >
                 <Box mx={1}>
@@ -76,6 +81,9 @@ function ListaPostagem() {
                 </Box>
               </Link>
             </Box>
+            ) : (
+              <></>
+            )}
           </CardActions>
         </Card>
       </Box>
