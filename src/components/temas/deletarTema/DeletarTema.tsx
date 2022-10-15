@@ -10,6 +10,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import Tema from "../../../model/Tema";
 import { buscaId, deleteId } from "../../../services/Service";
 import { TokenState } from "../../../store/token/tokenReducer";
@@ -51,13 +52,31 @@ function DeletarTema() {
   async function sim() {
     try {
       await deleteId(`/temas/${id}`, {
-        headers: { Authorization: token },
+        headers: {' Authorization': token},
       });
-      alert("Tema apagado com sucesso.");
       navigate("/temas");
+      toast.success('Tema Deletado!', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
     } catch (error) {
-      alert("Erro ao deletar o tema");
       navigate("/temas");
+      toast.error('Erro ao Deletar! Tente Novamente', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
     }
   }
 
