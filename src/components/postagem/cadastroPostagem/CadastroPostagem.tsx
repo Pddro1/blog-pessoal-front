@@ -12,6 +12,7 @@ import {
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import Postagem from "../../../model/Postagem";
 import Tema from "../../../model/Tema";
 import User from "../../../model/User";
@@ -53,8 +54,17 @@ function CadastroPostagem() {
 
   useEffect(() => {
     if (token === "") {
-      alert("Você precisa estar Logado!");
       navigate("/login");
+      toast.warn('Você Precisa estar Logado!!', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
     }
   }, [token]);
 
@@ -101,18 +111,54 @@ function CadastroPostagem() {
         await put(`/postagens`, postagem, setPostagem, {
           headers: {'Authorization': token,},
         });
-        alert("Postagem atualizada com sucesso");
+        toast.success('Postagem Atualizada com Sucesso!', {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
       } catch (error) {
-        alert("Erro ao atualizar, verifique os campos");
+        toast.error('Erro ao Atualizar, Tente Novamente!', {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
       }
     } else {
       try {
         await post(`/postagens`, postagem, setPostagem, {
           headers: {'Authorization': token,},
         });
-        alert("Postagem cadastrada com sucesso");
+        toast.success('Postagem Realizada', {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
       } catch (error) {
-        alert("Erro ao cadastrar, verifique os campos");
+        toast.error('Erro ao Postar, Verifique os Campos!', {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
       }
     }
     navigate("/postagens");

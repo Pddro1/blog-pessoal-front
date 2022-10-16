@@ -1,6 +1,6 @@
 .fPerfil{
-  width: 15rem;
-  height: 15rem;
+  width: 15rem !important;
+  height: 15rem !important;
   margin: 0 auto;
 }
 

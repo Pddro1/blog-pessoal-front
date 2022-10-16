@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useLocalStorage from "react-use-localstorage";
 import { useSelector } from "react-redux";
 import { TokenState } from "../../store/token/tokenReducer";
+import { toast } from "react-toastify";
 
 function Home() {
 
@@ -17,8 +18,17 @@ function Home() {
 
   useEffect(() => {
     if (token == "") {
-      alert("Você precisa estar Logado!");
       navigate("/login");
+      toast.warn('Você Precisa estar Logado!!', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
     }
   }, [token]);
 

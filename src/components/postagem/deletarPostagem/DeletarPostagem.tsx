@@ -14,6 +14,7 @@ import './DeletarPostagem.css';
 import Postagem from '../../../model/Postagem';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/token/tokenReducer';
+import { toast } from 'react-toastify';
 
 function DeletarPostagem() {
 
@@ -27,8 +28,17 @@ function DeletarPostagem() {
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar Logado!');
       navigate('/login');
+      toast.warn('Você Precisa estar Logado!!', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
     }
   }, [token]);
 
@@ -55,9 +65,27 @@ function DeletarPostagem() {
           Authorization: token,
         },
       });
-      alert('Postagem deletada com sucesso');
+      toast.success('Postagem Deletada!', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
     } catch (error) {
-      alert('Erro ao deletar');
+      toast.error('Erro ao Deletar a Postagem', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
     }
   }
 
