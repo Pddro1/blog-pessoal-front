@@ -2,6 +2,7 @@ import { Avatar, Container, Grid, Typography, Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import User from "../../model/User";
 import { buscaId } from "../../services/Service";
 import { TokenState } from "../../store/token/tokenReducer";
@@ -26,6 +27,22 @@ function Perfil() {
       headers: { Authorization: token },
     });
   }
+
+  useEffect(() => {
+    if (token == "") {
+      navigate("/login");
+      toast.warn('Você Precisa estar Logado!!', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+    }
+  }, [token]);
 
   useEffect(() => {
     getUserById(+userId);
