@@ -1,4 +1,6 @@
-import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material'
+import { makeStyles } from '@material-ui/core/styles';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
+import { width } from '@mui/system';
 import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
@@ -8,8 +10,15 @@ import { busca } from '../../../services/Service';
 import { TokenState } from '../../../store/token/tokenReducer';
 import "./ListaPostagem.css";
 
+const useStyles = makeStyles({
+  media: {
+    height: 140,
+  },
+});
 
 function ListaPostagem() {
+
+  const classes = useStyles();
 
   let navigate = useNavigate();
 
@@ -54,6 +63,10 @@ function ListaPostagem() {
       {postagens.map(postagem => (
         <Box m={2} key={postagem.id} >
         <Card variant="outlined">
+          <CardMedia 
+            className={classes.media}
+            image={postagem.foto}
+            />
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
               Postagens

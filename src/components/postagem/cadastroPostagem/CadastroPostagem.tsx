@@ -40,6 +40,7 @@ function CadastroPostagem() {
     id: 0,
     titulo: "",
     texto: "",
+    foto: '',
     tema: null,
     usuario: null
   });
@@ -198,6 +199,15 @@ function CadastroPostagem() {
             margin="normal"
             fullWidth
           />
+          <TextField value={postagem.foto}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => updatedPostagem(event)}
+            id='foto'
+            label='Insira uma foto como url'
+            name='foto'
+            variant='filled'
+            margin='normal'
+            fullWidth
+            />
 
           <FormControl fullWidth variant="standard">
             <InputLabel id="demo-simple-select-helper-label">Tema </InputLabel>
